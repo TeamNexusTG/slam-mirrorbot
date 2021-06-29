@@ -17,24 +17,24 @@
 
 # Features supported:
 ## Additional Features
-- Get detailed info about replied media (Only for Telegram file)
-- Speedtest with picture results
-- Stop duplicate cloning Google Drive & mirroring Mega support
+- Updater (**NOTE**: You must upload your **token.pickle** to Index and fill your **token.pickle** url to **TOKEN_PICKLE_URL**, because your **token.pickle** will deleted after update)
 - Limiting size Torrent/Direct, Mega, cloning Google Drive support
+- Get detailed info about replied media (Only for Telegram file)
+- Stop duplicate cloning Google Drive & mirroring Mega support
+- Speedtest with picture results
+- Tar/Unzip G-Drive link support
 - Sudo with Database support
 - Multiple Trackers support
 - Check Heroku dynos stats
-- Heroku config support
-- Updater (Only for Heroku)
 - Extracting **tar.xz** support
-- Create Tar Google Drive folder
-- Custom image support
+- Heroku config support
+- Custom Image support
 - Counting file/folder
-- Shell and Executor
 - View Link button
+- Shell and Eval
 - Torrent search supported:
 ```
-nyaa, sukebei, 1337x, piratebay, tgx,
+nyaasi, sukebei, 1337x, piratebay, tgx,
 yts, eztv, torlock, rarbg
 ```
 - Direct links supported:
@@ -46,7 +46,7 @@ feurl.com, pixeldrain.com, uptobox.com (Uptobox account must be premium),
 ```
 ## From Original Repos
 - Mirroring direct download links, Torrent, and Telegram files to Google Drive
-- Mirroring Mega.nz links to Google Drive (If your Mega account not premium, it will limit 4-5gb/day)
+- Mirroring Mega.nz links to Google Drive (If your Mega account not premium, it will limit 5GB/6 hours)
 - Copy files from someone's Drive to your Drive (Using Autorclone)
 - Download/Upload progress, Speeds and ETAs
 - Mirror all Youtube-dl supported links
@@ -95,7 +95,7 @@ pip3 install -r requirements-cli.txt
 ```
 ## Generate Database
 <details>
-    <summary><b>Click here for more details</b></summary>
+    <summary><b>Click Here For More Details</b></summary>
 
 **1. Using ElephantSQL**
 - Go to https://elephantsql.com/ and create account (skip this if you already have ElephantSQL account)
@@ -116,7 +116,7 @@ pip3 install -r requirements-cli.txt
 
 ## Setting up config file
 <details>
-    <summary><b>Click here for more details</b></summary>
+    <summary><b>Click Here For More Details</b></summary>
 
 ```
 cp config_sample.env config.env
@@ -139,6 +139,8 @@ Fill up rest of the fields. Meaning of each fields are discussed below:
 - **UPSTREAM_REPO**: Link for Bot Upstream Repo, if you want default update, fill ```https://github.com/breakdowns/slam-mirrorbot```.
 - **UPSTREAM_BRANCH**: Branch name for Bot Upstream Repo (Recommended using master branch)
 ### Optional Field
+- **ACCOUNTS_ZIP_URL**: Only if you want to load your Service Account externally from an Index Link. Archive your Service Account json files to a zip file directly (don't archive the accounts folder. Select all the jsons inside and zip them only instead. Name the zip file with whatever you want, it doesn't matter). Fill this with the direct link of that file.
+- **TOKEN_PICKLE_URL**: Only if you want to load your **token.pickle** externally from an Index Link. Fill this with the direct link of that file.
 - **AUTHORIZED_CHATS**: Fill user_id and chat_id of you want to authorize.
 - **IS_TEAM_DRIVE**: Set to `True` if `GDRIVE_FOLDER_ID` is from a Team Drive else `False` or Leave it empty.
 - **USE_SERVICE_ACCOUNTS**: (Leave empty if unsure) Whether to use Service Accounts or not. For this to work see [Using service accounts](https://github.com/breakdowns/slam-mirrorbot#generate-service-accounts-what-is-service-account) section below.
@@ -212,20 +214,14 @@ sudo docker run mirrorbot
 
 ## Deploying on Heroku
 
-- Give stars and Fork this repo then upload **token.pickle** to your forks
+- Give stars and Fork this repo then upload **token.pickle** to your forks, or you can upload your **token.pickle** to your Index and put your **token.pickle** link to **TOKEN_PICKLE_URL**. How to generate **token.pickle**? [Read here](https://github.com/breakdowns/slam-mirrorbot#getting-google-oauth-api-credential-file)
 - Hit the **DEPLOY TO HEROKU** button and follow the further instructions in the screen
-- **NOTE**: If you didn't upload **token.pickle**, uploading will not work. How to generate **token.pickle**? [Read here](https://github.com/breakdowns/slam-mirrorbot#getting-google-oauth-api-credential-file)
 - Recommended to use 1 App in 1 Heroku accounts
 
 <p><a href="https://heroku.com/deploy"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
 
 ## Deploying on Heroku with heroku-cli and Goorm IDE
 <p><a href="https://telegra.ph/How-to-Deploy-a-Mirror-Bot-to-Heroku-with-CLI-05-06"> <img src="https://img.shields.io/badge/see%20on%20telegraph-grey?style=for-the-badge" width="190""/></a></p>
-
-## Video Tutorial deploying slam-mirrorbot on Heroku
-<p><a href="https://www.youtube.com/watch?v=WIhL0TrisfQ&t=1s"> <img src="https://img.shields.io/badge/See%20On%20Youtube-black?style=for-the-badge&logo=youtube" width="200""/></a></p>
-
-**NOTE**: Recommended to generate **token.pickle** manually. [Read here](https://github.com/breakdowns/slam-mirrorbot#getting-google-oauth-api-credential-file)
 
 # Using Service Accounts for uploading to avoid user rate limit
 For Service Account to work, you must set **USE_SERVICE_ACCOUNTS=**"True" in config file or environment variables, 
@@ -234,7 +230,7 @@ Many thanks to [AutoRClone](https://github.com/xyou365/AutoRclone) for the scrip
 
 ## Generate Service Accounts. [What is Service Account](https://cloud.google.com/iam/docs/service-accounts)
 <details>
-    <summary><b>Click here for more details</b></summary>
+    <summary><b>Click Here For More Details</b></summary>
 
 Let us create only the Service Accounts that we need. 
 **Warning**: abuse of this feature is not the aim of this project and we do **NOT** recommend that you make a lot of projects, just one project and 100 SAs allow you plenty of use, its also possible that over abuse might get your projects banned by Google. 
@@ -312,6 +308,6 @@ Thanks to:
 - [magneto261290](https://github.com/magneto261290/) for some features
 - [SVR666](https://github.com/SVR666/) for some features & fixes
 - [anasty17](https://github.com/anasty17) for some features & help
-- [breakdowns](https://github.com/breakdowns) for Slam
+- [breakdowns](https://github.com/breakdowns) for slam-mirrorbot
 
 And many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/breakdowns/slam-mirrorbot/graphs/contributors).
